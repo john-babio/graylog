@@ -17,7 +17,7 @@ sudo keytool -storepasswd -keystore /usr/lib/jvm/java-8-oracle/jre/lib/security/
 
 #<b>Step 2</b> Generate Certs for Graylog
 
-keytool -genkey -alias <b>dns.name.of.server</b> -keyalg RSA -validity 1095 -keystore keystore.jks
+keytool -genkey -alias <b>dns.name.of.server</b> -keyalg RSA -validity 365 -keystore keystore.jks
 
 openssl req -x509 -days 365 -nodes -newkey rsa:2048 -keyout pkcs5-plain.pem -out cert.pem
 
@@ -72,6 +72,7 @@ web_tls_key_password = password (Same as rest_tls_key_password.)
 
 #<b>Step 4</b> restart graylog and tail -f /var/log/graylog/server.log
 
+If all goes well open chrome and go to https://dns.name.of.server:9000 and you should be able to log in.
 
 
 
