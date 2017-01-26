@@ -43,7 +43,7 @@ keytool -import -trustcacerts -file graylog-certificate.pem -alias dns.name.of.s
 
 keytool -import -trustcacerts -file graylog-certificate.pem -alias dns.name.of.server  -keystore /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/cacerts
 
-#<b>Step 3</b> Setup graylog server.conf and move certificaties to graylog folder
+#<b>Step 3</b> Setup graylog server.conf and move certificates to graylog folder
 
 move all *.pem, *.p12, and *.jks files to /etc/graylog and chown graylog:graylog -R /etc/graylog so that the graylog user has access to them.
 
