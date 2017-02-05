@@ -74,5 +74,9 @@ web_tls_key_password = password (Same as rest_tls_key_password.)
 
 If all goes well open chrome and go to https://dns.name.of.server:9000 and you should be able to log in.
 
+#Sagan.pipeline
+This is the pipeline rule regex for handling Sagan alerts coming into graylog.
 
+#Maltrail.pipeline
+This is the pipeline rule regex for handling Maltrail alerts coming into graylog.
 
