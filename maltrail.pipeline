@@ -1,0 +1,14 @@
+rule "Extract Maltrail alert fields"
+when
+  has_field("message")
+then
+  let m = regex(".*?[|]Maltrail[|]sensor[|]\\d{1}\\.\\d{2}\\.\\d{3}[|]\\d{4}\\-\\d{2}\\-\\d{2}[|](.+?)[|]0[|]src=(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}).+?spt=(\\d{1,5}|[-]).+?dst=(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}).+?dpt=(\\d{1,5}|[-]).+?trail=(\\S+).+?ref=\\((.+?)\\)", to_string($message.message));
+  set_field("maltrail_alert", true);
+  set_field("maltrail_description", m["0"]);
+  set_field("maltrail_src", m["1"]);
+  set_field("maltrail_spt", to_long(m["2"]));
+  set_field("maltrail_dst", m["3"]);
+  set_field("maltrail_dpt", to_long(m["4"]));
+  set_field("maltrail_trail", m["5"]);
+  set_field("maltrail_ref", m["6"]);
+end
