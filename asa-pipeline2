@@ -1,3 +1,10 @@
+#These rules must be created as stream rules
+#You must also install the ASA pack from Graylogs marketplace
+#Field mnemonic must match exactly 305011
+#Field mnemonic must match exactly 305012
+
+
+#Create these pipelines
 rule "ASA Connection pipeline2"
 when
   has_field("message")
