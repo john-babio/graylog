@@ -1,0 +1,13 @@
+rule "ASA Connection pipeline"
+when
+  has_field("message")
+then
+ let m = regex(".*?(TCP|UDP).*?[for|from]\\s(.+?)[:](\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})[/](\\d{1,5}).*?to.*?(.+?)[:](\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})[/](\\d{1,5}).*?", to_string($message.message));
+ set_field("protocol", m["0"]);
+ set_field("dst_nameif", m["1"]);
+ set_field("dst_ip", m["2"]);
+ set_field("dst_port", to_long(m["3"]));
+ set_field("src_nameif", m["4"]);
+ set_field("src_ip", m["5"]);
+ set_field("src_port", to_long(m["6"]));
+end
